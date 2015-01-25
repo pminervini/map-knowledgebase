@@ -1,0 +1,88 @@
+Prefix map:		<http://mapp.eu/>
+Prefix foaf:	<http://xmlns.com/foaf/0.1/>
+
+Prefix geom:	<http://geovocab.org/geometry#>
+Prefix lgdo:	<http://linkedgeodata.org/ontology/>
+Prefix ogc:		<http://ogp.me/ns/class#>
+Prefix xsd:		<http://www.w3.org/2001/XMLSchema#>
+
+Create View view_contributor As Construct {
+	?s		a					map:Contributor .
+	?s		map:name			?name .
+} With
+	?s				=	uri(concat("http://mapp.eu/contributor/", ?name))
+	?name			=	plainLiteral(?name)
+From
+	user_entity
+	
+Create View view_artisan As Construct {
+	?s		a					map:Artisan .
+	?s		map:name			?name .
+	?s		map:description		?description .	
+	?s		geom:geometry		?geo .
+	?s		map:address			?address .
+	?s		map:contributor		?contributor .
+} With
+	?s				=	uri(concat("http://mapp.eu/artisan/", ?id))
+	?name			=	plainLiteral(?name)
+	?description	=	plainLiteral(?description)
+	?geo			=	typedLiteral(?point, ogc:WKTLiteral)
+	?address		=	plainLiteral(?address)
+	?contributor	=	uri(concat("http://mapp.eu/contributor/", ?contributor_name))
+From
+	artisan
+	
+Create View view_organization As Construct {
+	?s		a					map:Organization .
+	?s		map:name			?name .
+	?s		map:description		?description .	
+	?s		geom:geometry		?geo .
+	?s		map:address			?address .
+	?s		map:contributor		?contributor .
+} With
+	?s				=	uri(concat("http://mapp.eu/organization/", ?id))
+	?name			=	plainLiteral(?name)
+	?description	=	plainLiteral(?description)
+	?geo			=	typedLiteral(?point, ogc:WKTLiteral)
+	?address		=	plainLiteral(?address)
+	?contributor	=	uri(concat("http://mapp.eu/contributor/", ?contributor_name))
+From
+	organization
+
+Create View view_museum As Construct {
+	?s		a					map:Museum .
+	?s		map:name			?name .
+	?s		map:description		?description .	
+	?s		geom:geometry		?geo .
+	?s		map:address			?address .
+	?s		map:contributor		?contributor .
+} With
+	?s				=	uri(concat("http://mapp.eu/museum/", ?id))
+	?name			=	plainLiteral(?name)
+	?description	=	plainLiteral(?description)
+	?geo			=	typedLiteral(?point, ogc:WKTLiteral)
+	?address		=	plainLiteral(?address)
+	?contributor	=	uri(concat("http://mapp.eu/contributor/", ?contributor_name))
+From
+	museum
+
+Create View view_event As Construct {
+	?s		a					map:Event .
+	?s		map:name			?name .
+	?s		map:description		?description .	
+	?s		geom:geometry		?geo .
+	?s		map:address			?address .
+	?s		map:startDate		?startDate .
+	?s		map:endDate			?endDate .
+	?s		map:contributor		?contributor .
+} With
+	?s				=	uri(concat("http://mapp.eu/event/", ?id))
+	?name			=	plainLiteral(?name)
+	?description	=	plainLiteral(?description)
+	?geo			=	typedLiteral(?point, ogc:WKTLiteral)
+	?address		=	plainLiteral(?address)
+	?startDate		=	typedLiteral(?start_date, xsd:dateTime)
+	?endDate		=	typedLiteral(?end_date, xsd:dateTime)
+	?contributor	=	uri(concat("http://mapp.eu/contributor/", ?contributor_name))
+From
+	event

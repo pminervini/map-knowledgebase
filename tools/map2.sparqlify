@@ -1,0 +1,72 @@
+Prefix map:		<http://mapp.eu/>
+Prefix foaf:	<http://xmlns.com/foaf/0.1/>
+
+Prefix geom:	<http://geovocab.org/geometry#>
+Prefix lgdo:	<http://linkedgeodata.org/ontology/>
+Prefix ogc:		<http://ogp.me/ns/class#>
+Prefix xsd:		<http://www.w3.org/2001/XMLSchema#>
+
+Create View view_contributor As Construct {
+	?s		a					map:Contributor .
+	?s		map:name			?name .
+} With
+	?s				=	uri(concat("http://mapp.eu/contributor/", ?name))
+	?name			=	plainLiteral(?name)
+From
+	user_entity
+
+Create View view_named As Construct {
+	?s		a					map:Entity .
+	?s		map:name			?name .
+} With
+	?s				=	uri(concat("http://mapp.eu/entity/", ?id))
+	?name			=	plainLiteral(?name)
+From
+	named_entity
+
+Create View view_contributed As Construct {
+	?s		a					map:Entity .
+	?s		map:description		?description .	
+	?s		geom:geometry		?geo .
+	?s		map:address			?address .
+	?s		map:contributor		?contributor .
+} With
+	?s				=	uri(concat("http://mapp.eu/entity/", ?id))
+	?description	=	plainLiteral(?description)
+	?geo			=	typedLiteral(?point, ogc:WKTLiteral)
+	?address		=	plainLiteral(?address)
+	?contributor	=	uri(concat("http://mapp.eu/contributor/", ?contributor_name))
+From
+	contributed_entity
+
+Create View view_artisan As Construct {
+	?s		a					map:Organization .
+} With
+	?s				=	uri(concat("http://mapp.eu/organization/", ?id))
+From
+	artisan
+	
+Create View view_organization As Construct {
+	?s		a					map:Organization .
+} With
+	?s				=	uri(concat("http://mapp.eu/organization/", ?id))
+From
+	organization
+
+Create View view_museum As Construct {
+	?s		a					map:Museum .
+} With
+	?s				=	uri(concat("http://mapp.eu/museum/", ?id))
+From
+	museum
+
+Create View view_event As Construct {
+	?s		a					map:Event .
+	?s		map:startDate		?startDate .
+	?s		map:endDate			?endDate .
+} With
+	?s				=	uri(concat("http://mapp.eu/event/", ?id))
+	?startDate		=	typedLiteral(?start_date, xsd:dateTime)
+	?endDate		=	typedLiteral(?end_date, xsd:dateTime)
+From
+	event
