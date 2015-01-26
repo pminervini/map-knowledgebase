@@ -1,8 +1,11 @@
+	
+# map-knowledgebase
+
 Install the required components:
 
 	# apt-get install postgresql-9.1 postgis postgresql-9.1-postgis php5-mcrypt python3 openjdk-7-jdk tomcat7 tomcat7-user tomcat7-admin tomcat7-examples maven subversion git apache2-mpm-itk
 	
-Create PostGIS database:
+Create the PostGIS database:
 
 	# su postgres
 	$ psql template1
@@ -51,5 +54,4 @@ Install Sparqlify
 	# dpkg -i ldstable-repository.deb
 	# apt-get update
 	# apt-get install sparqlify-tomcat7
-	
-# map-knowledgebase
+
