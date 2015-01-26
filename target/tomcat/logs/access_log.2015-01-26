@@ -194,3 +194,5 @@
 172.17.0.46 - - [26/Jan/2015:00:26:22 +0100] "GET /map/entity/feature?events=true HTTP/1.1" 200 12 http-bio-9966-exec-19 8
 172.17.0.46 - - [26/Jan/2015:00:26:28 +0100] "GET /map/entity/feature?artisans=true&organizations=true&museums=true&events=true HTTP/1.1" 200 107944 http-bio-9966-exec-39 72
 172.17.0.46 - - [26/Jan/2015:00:28:06 +0100] "GET /map/entity/feature?artisans=true&organizations=true&museums=true&events=true HTTP/1.1" 200 107944 http-bio-9966-exec-30 75
+172.17.0.46 - - [26/Jan/2015:10:58:50 +0100] "GET /map/entity/feature?artisans=true&organizations=true&museums=true&events=true HTTP/1.1" 200 107944 http-bio-9966-exec-1 508
+172.17.0.46 - - [26/Jan/2015:11:00:34 +0100] "GET /map/entity/feature?artisans=true&organizations=true&museums=true&events=true HTTP/1.1" 200 107944 http-bio-9966-exec-3 184

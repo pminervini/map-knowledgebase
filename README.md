@@ -1,11 +1,7 @@
 Install the required components:
 
-	# apt-get install postgresql-9.1-postgis php5-mcrypt python3 htop elinks openjdk-7-jdk tomcat7 tomcat7-user tomcat7-admin tomcat7-examples maven subversion git ant openvpn postgis postgresql-9.1 phppgadmin activemq apache2-mpm-itk screen 
-
-Enable ActiveMQ:
-
-	# ln -s /etc/activemq/instances-available/main/ /etc/activemq/instances-enabled/
-
+	# apt-get install postgresql-9.1 postgis postgresql-9.1-postgis php5-mcrypt python3 openjdk-7-jdk tomcat7 tomcat7-user tomcat7-admin tomcat7-examples maven subversion git apache2-mpm-itk
+	
 Create PostGIS database:
 
 	# su postgres
@@ -49,8 +45,11 @@ Add the 'admin' user:
 	$ psql -d map
 	> INSERT INTO user_entity VALUES ('admin', true, '5f4dcc3b5aa765d61d8327deb882cf99');
 
-Populate the database:
+Install Sparqlify
 
-	$ curl -X GET "http://admin:password@127.0.0.1:8080/map/populate?path=tools%2Fart01%2Fschede_v.3.xlsx" 
-	$ curl -X GET "http://admin:password@127.0.0.1:8080/map/populate/collect"
+	# wget http://stack.linkeddata.org/ldstable-repository.deb
+	# dpkg -i ldstable-repository.deb
+	# apt-get update
+	# apt-get install sparqlify-tomcat7
+	
 # map-knowledgebase
