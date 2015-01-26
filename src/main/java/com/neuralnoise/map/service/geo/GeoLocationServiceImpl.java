@@ -21,7 +21,7 @@ public class GeoLocationServiceImpl implements GeoLocationService {
 	}
 
 	@Override
-	public List<Location> lookup(String address, ServiceType serviceType) throws IOException {
+	public List<Location> lookup(String address, ServiceType serviceType) throws IOException, InterruptedException {
 		List<Location> locations = null;
 		switch (serviceType) {
 		case GOOGLE: {

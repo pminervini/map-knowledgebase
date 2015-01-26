@@ -28,7 +28,7 @@ public class GeoLocationUtils {
 	private GeoLocationUtils() {
 	}
 
-	public static List<Location> queryNominatim(String address, String language) throws IOException {
+	public static List<Location> queryNominatim(String address, String language) throws IOException, InterruptedException {
 		HttpClient httpClient = new DefaultHttpClient();
 
 		Properties props = new Properties();
@@ -39,8 +39,17 @@ public class GeoLocationUtils {
 		String email = props.getProperty("nominatim.headerEmail");
 
 		JsonNominatimClient nominatimClient = new JsonNominatimClient(httpClient, email);
-		List<Address> addresses = nominatimClient.search(address);
+		List<Address> addresses = null; //nominatimClient.search(address);
 
+		int count = 0;
+		
+		while (count++ < 100 && addresses == null) {
+			addresses = nominatimClient.search(address);
+			if (addresses == null) {
+				Thread.sleep(1000);
+			}
+		}
+		
 		List<Location> gcs = Lists.newLinkedList();
 
 		for (Address addr : addresses) {
@@ -57,12 +66,21 @@ public class GeoLocationUtils {
 		return gcs;
 	}
 
-	public static List<Location> queryGoogle(String address, String language) {
+	public static List<Location> queryGoogle(String address, String language) throws InterruptedException {
 		Geocoder geocoder = new Geocoder();
 		GeocoderRequestBuilder builder = new GeocoderRequestBuilder().setAddress(address).setLanguage(language);
 
 		GeocoderRequest request = builder.getGeocoderRequest();
-		GeocodeResponse response = geocoder.geocode(request);
+		GeocodeResponse response = null; // geocoder.geocode(request);
+				
+		int count = 0;
+		
+		while (count++ < 100 && response == null) {
+			response = geocoder.geocode(request);
+			if (response == null) {
+				Thread.sleep(1000);
+			}
+		}
 
 		List<Location> gcs = Lists.newLinkedList();
 
