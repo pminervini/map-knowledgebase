@@ -36,12 +36,12 @@ public class CrowdContribution extends NamedEntity {
 	protected String contributor;
 	
 	@Column(name = "start_date")
-	@NotNull
+	//@NotNull
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	protected DateTime startDate;
 
 	@Column(name = "end_date")
-	@NotNull
+	//@NotNull
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	protected DateTime endDate;
 	
