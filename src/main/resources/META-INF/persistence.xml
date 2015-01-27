@@ -16,6 +16,9 @@
 		<class>com.neuralnoise.map.model.map.Museum</class>
 		<class>com.neuralnoise.map.model.map.Organization</class>
 		
+		<class>com.neuralnoise.map.model.map.crowd.CrowdContribution</class>
+		<class>com.neuralnoise.map.model.map.newsletter.Subscription</class>
+		
 		<class>com.neuralnoise.map.model.security.UserEntity</class>
 		
 		<properties>

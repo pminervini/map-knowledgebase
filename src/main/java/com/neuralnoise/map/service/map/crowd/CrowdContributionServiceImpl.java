@@ -22,6 +22,7 @@ public class CrowdContributionServiceImpl implements CrowdContributionService {
 	@Override
 	@Transactional(readOnly = false)
 	public CrowdContribution create(CrowdContribution contribution) {
+		System.out.println("XXX 2: " + contribution);
 		return crowdContributionDAO.create(contribution);
 	}
 

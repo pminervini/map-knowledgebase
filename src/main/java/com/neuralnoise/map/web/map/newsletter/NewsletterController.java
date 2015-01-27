@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,7 +29,7 @@ public class NewsletterController {
 	
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public Subscription create(@ModelAttribute Subscription entity, HttpServletResponse response) {
+	public Subscription create(@RequestBody Subscription entity, HttpServletResponse response) {
 		log.info("Creating new entity {}", entity);
 		Subscription ret = service.create(entity);
 		log.info("Created entity: " + ret);
